@@ -17,6 +17,8 @@ import realcf1 from './assets/realcf1.jpeg'
 import paths from './assets/paths.jpeg'
 import lambdainteg from './assets/lambdainteg.jpeg'
 import default1 from './assets/default.jpeg'
+import dataLimitImg from './assets/datalimit.jpeg'
+import bedrockUnavail from './assets/bedrockunavail.jpeg'
 import lambda_archi from './assets/lambda_archi_final.svg'
 import s3 from './assets/s3.svg'
 import { useState, useRef } from 'react'
@@ -602,7 +604,34 @@ function App() {
               </div>
             </p>
           </details>
-          <br /> <br /> <br /> <br />
+          <br /> <br /> 
+        </div>
+
+        <div className="archi-overview">
+          <h3>Error Handling</h3>
+          <p>
+            All errors in the workflow are tracked via AWS Step Functions. Each Lambda execution is logged, and any failure is captured in the state machine, making it easy to identify which step failed and why. See sample errors below.
+          </p>
+
+          <details className="stack-item">
+            <summary className="stack-summary">
+              <span className="summary-text">DataLimitExceeded</span>
+            </summary>
+            <p>
+              The input data exceeds the allowed limits. Try to reduce the amount of data sent for analysis.
+            </p>
+            <img src={dataLimitImg} alt="DataLimitExceeded" className="stack-detail-img-main" />
+          </details>
+
+          <details className="stack-item">
+            <summary className="stack-summary">
+              <span className="summary-text">BedrockUnavailable</span>
+            </summary>
+            <p>
+              This is a Bedrock limitation - the service is temporarily unavailable due to exceeding token limits. Wait a few minutes and retry.
+            </p>
+            <img src={bedrockUnavail} alt="BedrockUnavailable" className="stack-detail-img-main" />
+          </details>
         </div>
       </div>
     </div>
